@@ -1,0 +1,523 @@
+/*  IMPORTS=*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+ 
+/*  DESIGN SYSTEM: VARIÁVEIS (cores extraídas do logo) */
+:root {
+  /* Cores */
+  --cor-primaria: #1B4F72;      /* Azul escuro — títulos, footer */
+  --cor-secundaria: #F2994A;    /* Laranja — botões, destaques */
+  --cor-terciaria: #5DADE2;     /* Azul claro — detalhes suaves */
+  --cor-fundo-clara: #FBE9D6;   /* Fundo suave (seção "Quem Somos") */
+  --cor-fundo: #FDFBF8;         /* Fundo geral da página */
+  --cor-texto: #3a3a3a;
+  --cor-branco: #ffffff;
+ 
+  /* Tipografia (5 tamanhos, escala fluida com clamp) */
+  --fonte-principal: "Quicksand", sans-serif;
+  --texto-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  --texto-sm: clamp(0.85rem, 0.8rem + 0.3vw, 1rem);
+  --texto-base: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --texto-md: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);
+  --texto-lg: clamp(1.75rem, 1.4rem + 1.2vw, 2.75rem);
+ 
+  /* Espaçamentos (escala modular) */
+  --espaco-xs: 0.5rem;
+  --espaco-sm: 1rem;
+  --espaco-md: 2rem;
+  --espaco-lg: 4rem;
+ 
+  /* Layout */
+  --largura-maxima: 1200px;
+  --raio-borda: 16px;
+  --sombra-card: 0 4px 20px rgba(27, 79, 114, 0.08);
+}
+ 
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fonte-principal);
+}
+ 
+body {
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+  font-size: var(--texto-base);
+  line-height: 1.7;
+  overflow-x: hidden; /* evita rolagem lateral causada pela seção "full bleed" */
+}
+ 
+/* TIPOGRAFIA GLOBAL */
+h1, h2, h3 {
+  color: var(--cor-primaria);
+  font-weight: 700;
+  line-height: 1.2;
+}
+ 
+h1 { font-size: var(--texto-lg); }
+h2 { font-size: var(--texto-md); margin-bottom: var(--espaco-sm); }
+h3 { font-size: var(--texto-base); }
+ 
+strong {
+  color: var(--cor-secundaria);
+}
+ 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ 
+/* CONTAINER PADRÃO (usado nas seções) */
+section {
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espaco-lg) var(--espaco-sm);
+}
+ 
+/* BOTÃO ESTILO "PÍLULA" */
+.botao {
+  display: inline-block;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco) !important;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-weight: 500;
+  margin-top: var(--espaco-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+ 
+.botao:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-card);
+}
+ 
+/* HEADER (Flexbox) */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+  padding: var(--espaco-sm) var(--espaco-md);
+  background-color: var(--cor-branco);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+ 
+.logo {
+  width: 100px;
+  height: auto;
+}
+ 
+.titulo {
+  font-size: var(--texto-md);
+  color: var(--cor-primaria);
+}
+ 
+/* MENU (Flexbox) */
+.menu ul {
+  display: flex;
+  gap: var(--espaco-md);
+  list-style: none;
+}
+ 
+.menu a {
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+ 
+.menu a:hover {
+  color: var(--cor-secundaria);
+}
+ 
+/* MENU HAMBÚRGUER (mobile) — técnica "checkbox hack" */
+.menu-toggle-checkbox {
+  display: none; /* o checkbox em si nunca aparece, só guarda o estado */
+}
+ 
+.menu-hamburguer {
+  display: none; /* fica oculto em telas grandes */
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+ 
+.menu-hamburguer span {
+  width: 28px;
+  height: 3px;
+  background-color: var(--cor-primaria);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+ 
+/* GRID SYSTEM DE 12 COLUNAS */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--espaco-md);
+  max-width: var(--largura-maxima);
+  margin: var(--espaco-md) auto 0;
+}
+ 
+.col-12 { grid-column: span 12; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
+.col-3  { grid-column: span 3; }
+ 
+/* SEÇÃO: QUEM SOMOS (fundo "full bleed" + Flexbox centralizado) */
+#sobre {
+  background-color: var(--cor-fundo-clara);
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: var(--espaco-lg) var(--espaco-sm);
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+ 
+#sobre h2,
+#sobre img,
+#sobre p {
+  max-width: var(--largura-maxima);
+  width: 100%;
+}
+ 
+#sobre img {
+  height: auto;
+  border-radius: var(--raio-borda);
+  margin: var(--espaco-sm) 0;
+  box-shadow: var(--sombra-card);
+}
+ 
+#sobre p {
+  max-width: 700px;
+}
+
+/* ===== BADGES ===== */
+.badge {
+  display: inline-block;
+  font-size: var(--texto-xs);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: var(--espaco-xs);
+}
+
+.badge-voluntariado {
+  background-color: rgba(93, 173, 226, 0.15);
+  color: var(--cor-terciaria);
+}
+
+.badge-doacao {
+  background-color: rgba(242, 153, 74, 0.15);
+  color: var(--cor-secundaria);
+}
+
+.badge-urgente {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: #e74c3c;
+}
+ 
+/* SEÇÃO: DESTAQUES (cards dentro do grid-12) */
+#destaques {
+  text-align: center;
+}
+ 
+#destaques article {
+  background-color: var(--cor-branco);
+  padding: var(--espaco-md);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+  text-align: left;
+  transition: transform 0.2s;
+}
+ 
+#destaques article:hover {
+  transform: translateY(-4px);
+}
+ 
+#destaques article h3 {
+  color: var(--cor-secundaria);
+  margin-bottom: var(--espaco-xs);
+}
+ 
+/* SLIDES (imagens com efeito, Flexbox) */
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--espaco-sm);
+  padding: 0 var(--espaco-lg);
+  margin-top: var(--espaco-md);
+}
+ 
+.pagina {
+  position: relative;
+  transition: transform 0.5s;
+}
+ 
+.pagina img {
+  width: 100%;
+  max-width: 280px;
+  height: 60vh;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+}
+ 
+.pagina:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+ 
+/* SEÇÃO: CONTATO */
+#contato {
+  text-align: center;
+}
+ 
+#contato address {
+  font-style: normal;
+}
+ 
+#contato a {
+  color: var(--cor-primaria);
+  font-weight: 500;
+}
+
+/* ===== ESTADOS INTERATIVOS DO BOTÃO ===== */
+.botao:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-card);
+}
+
+.botao:focus {
+  outline: 3px solid var(--cor-terciaria);
+  outline-offset: 2px;
+}
+
+.botao:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.botao:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== ALERTAS ===== */
+.alerta {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: var(--texto-sm);
+  margin-bottom: var(--espaco-sm);
+  border-left: 4px solid;
+}
+
+.alerta-sucesso {
+  background-color: #eafaf1;
+  color: #1e8449;
+  border-color: #2ecc71;
+}
+
+.alerta-erro {
+  background-color: #fdedec;
+  color: #c0392b;
+  border-color: #e74c3c;
+}
+
+/* ===== FORMULÁRIO DE VOLUNTÁRIO ===== */
+.form-voluntario h3 {
+  text-align: center;
+}
+
+.form-voluntario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-sm);
+  max-width: 400px;
+  margin: var(--espaco-md) auto 0;
+  text-align: left;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.campo input {
+  padding: 10px 14px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: var(--texto-base);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: var(--cor-terciaria);
+  box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.2);
+}
+
+/* Feedback visual: só aparece depois que o usuário começa a digitar */
+.campo input:not(:placeholder-shown):valid {
+  border-color: #2ecc71;
+}
+
+.campo input:not(:placeholder-shown):invalid {
+  border-color: #e74c3c;
+}
+ 
+/* FOOTER (Flexbox) */
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-sm);
+  padding: var(--espaco-md);
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  text-align: center;
+}
+ 
+footer nav ul {
+  display: flex;
+  gap: var(--espaco-md);
+  list-style: none;
+}
+ 
+footer a {
+  color: var(--cor-branco);
+}
+ 
+footer a:hover {
+  color: var(--cor-terciaria);
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: var(--espaco-md);
+  right: var(--espaco-md);
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+  padding: 14px 24px;
+  border-radius: 10px;
+  box-shadow: var(--sombra-card);
+  font-size: var(--texto-sm);
+  z-index: 100;
+  animation: aparecer 0.4s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== FEEDBACK DE VALIDAÇÃO (JS) ===== */
+.campo-valido {
+  border-color: #2ecc71 !important;
+}
+
+.campo-invalido {
+  border-color: #e74c3c !important;
+}
+
+.mensagem-erro {
+  display: block;
+  color: #e74c3c;
+  font-size: var(--texto-xs);
+  margin-top: 4px;
+}
+ 
+/* RESPONSIVIDADE — 5 BREAKPOINTS */
+ 
+/* 1. Mobile pequeno — até 480px */
+@media (max-width: 480px) {
+  .col-4, .col-6 { grid-column: span 12; }
+  .grid-12 { gap: var(--espaco-sm); }
+  header { align-items: flex-start; }
+}
+ 
+/* 2. Mobile grande / tablet retrato — 481px a 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .col-4 { grid-column: span 6; }
+  .slide { flex-direction: column; }
+}
+ 
+/* Ativação do menu hambúrguer (0 a 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+ 
+  .menu-hamburguer {
+    display: flex;
+    position: absolute;
+    top: var(--espaco-sm);
+    right: var(--espaco-md);
+  }
+ 
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-branco);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+ 
+  .menu ul {
+    flex-direction: column;
+    padding: var(--espaco-sm);
+  }
+ 
+  .menu-toggle-checkbox:checked ~ .menu {
+    max-height: 300px;
+  }
+ 
+  .menu-toggle-checkbox:checked ~ .menu-hamburguer span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle-checkbox:checked ~ .menu-hamburguer span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-checkbox:checked ~ .menu-hamburguer span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+ 
+/* 3. Tablet paisagem — 769px a 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .col-4 { grid-column: span 4; }
+  section { padding: var(--espaco-md) var(--espaco-sm); }
+}
+ 
+/* 4. Desktop padrão — 1025px a 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .grid-12 { gap: var(--espaco-md); }
+}
+ 
+/* 5. Desktop panorâmico — acima de 1441px */
+@media (min-width: 1441px) {
+  :root { --largura-maxima: 1400px; }
+  .grid-12 { gap: var(--espaco-lg); }
+}

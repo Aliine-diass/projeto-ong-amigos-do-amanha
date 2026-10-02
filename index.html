@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/dayjs.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.10/locale/pt-br.min.js"></script>
+    
+		<title>Amigos do Amanhã | Início</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<header>
+			<img
+				class="logo"
+				src="imagens/img2.jpg"
+				alt="Logotipo da ONG Amigos do Amanhã"
+				width="120"
+				height="60"
+			/>
+			<h1 class="titulo">Amigos do Amanhã</h1>
+
+			<!-- Checkbox invisível: guarda o estado do menu (aberto/fechado). -->
+			<input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" />
+			<label for="menu-toggle" class="menu-hamburguer" aria-label="Abrir menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</label>
+
+			<nav class="menu">
+				<ul>
+					<li><a href="#/inicio">Início</a></li>
+					<li><a href="#/projetos">Projetos</a></li>
+					<li><a href="#/contato">Fale Conosco</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- ===== ÁREA DINÂMICA DA SPA =====
+		     Todo o conteúdo de "Quem Somos", "Nossas Frentes de Atuação" e "Fale Conosco"
+		     (incluindo o formulário e o modal) agora é gerado pelo JavaScript (templates.js)
+		     e injetado aqui dentro pelo roteador (main.js), conforme a rota (#/inicio, #/projetos, #/contato). -->
+		<main id="app"></main>
+
+		<footer>
+			<p>&copy; 2026 Amigos do Amanhã. Todos os direitos reservados.</p>
+			<nav>
+				<ul>
+					<li><a href="#/inicio">Início</a></li>
+					<li><a href="#/projetos">Projetos</a></li>
+					<li><a href="#/contato">Contato</a></li>
+				</ul>
+			</nav>
+		</footer>
+
+		<div class="toast" hidden>🔔 Novo projeto de doação foi publicado!</div>
+
+		<!-- type="module" é necessário para usar import/export entre os arquivos JS -->
+		<script type="module" src="js/main.js"></script>
+	</body>
+</html>
