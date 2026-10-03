@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	   <link
+		 <link
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
 		/>
@@ -14,6 +17,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 	<body>
+		<a href="#app" class="skip-link">Pular para o conteúdo principal</a>
 		<header>
 			<img
 				class="logo"
@@ -32,7 +36,7 @@
 				<span></span>
 			</label>
 
-			<nav class="menu">
+			<nav class="menu" aria-label="Principal">
 				<ul>
 					<li><a href="#/inicio">Início</a></li>
 					<li><a href="#/projetos">Projetos</a></li>
@@ -49,7 +53,7 @@
 
 		<footer>
 			<p>&copy; 2026 Amigos do Amanhã. Todos os direitos reservados.</p>
-			<nav>
+			<nav aria-label="Rodapé">
 				<ul>
 					<li><a href="#/inicio">Início</a></li>
 					<li><a href="#/projetos">Projetos</a></li>
@@ -58,7 +62,9 @@
 			</nav>
 		</footer>
 
-		<div class="toast" hidden>🔔 Novo projeto de doação foi publicado!</div>
+		<div class="toast" role="status" aria-live="polite" hidden>
+	    <span aria-hidden="true">🔔</span> Novo projeto de doação foi publicado!
+    </div>
 
 		<!-- type="module" é necessário para usar import/export entre os arquivos JS -->
 		<script type="module" src="js/main.js"></script>
